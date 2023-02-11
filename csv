@@ -1,0 +1,47 @@
+# Create a file called company-stocks.csv that includes three columns:
+
+# • company_name: The name of the company
+# • purchase_date: The purchase date of the stock
+# • shares: The number of shares purchased
+
+# Create a script that performs the following tasks:
+# • Prompt the user for a company name, purchase date, and number of shares for five
+#   different companies.
+# • Add each company’s information to a list and add each list to a collection of lists.
+# • After all data has been collected from the user, append the new data to company_stocks.csv and 
+#   display the file’s contents to the user.
+# The data entries should be realistic, even if the data is not real.
+
+import csv, os
+
+file = "../files/company_stocks.csv"
+list1 = []
+list_of_lists = []
+for i in range(5):
+    company_name = input("Give a company name: ")
+    purchase_date = input("Enter the purchase date: ")
+    num_shares = input("Enter the share volume: ")
+
+    row = {"company": company_name, "purchase_date": purchase_date, "number_of_shares": num_shares}
+    fields = ["company", "purchase_date", "number_of_shares"]
+    
+    list1 = [company_name, purchase_date, num_shares]
+    list_of_lists.append(list1)
+    
+    if os.path.exists(file):
+        with open(file, "a", newline = "") as f:
+            pen = csv.DictWriter(f, delimiter = ",", fieldnames = fields)
+            pen.writerow(row)
+    else:
+        with open(file, "w", newline = "") as f:
+            pen = csv.DictWriter(f, delimiter = ",", fieldnames = fields)
+            pen.writeheader()
+            pen.writerow(row)
+
+# Display the contents to the user
+print("======")
+f = open(file, "r")
+print(f.read())
+f.close()
+print("======")
+print(list_of_lists)
