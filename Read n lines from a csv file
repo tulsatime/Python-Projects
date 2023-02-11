@@ -1,0 +1,29 @@
+# Write a function that prompts the reader for an integer n and reads the first n lines of a
+# csv file. Include a creative way to handle cases where n is greater than the number
+# of lines available in the file.
+
+def csvReader():
+    import csv
+    file = "../files/stocks_short.csv"
+    n = int(input("How many lines do you wish to read? "))
+    with open(file, "r") as f:
+        reader = csv.reader(f, delimiter = ",")
+        arr = [] 
+        for row in reader:
+            arr.append(row)
+        numRows = len(arr)
+            
+    # open the file again
+    with open(file, "r") as f:
+        if n > numRows - 1: # (numRows - 1) excludes the first row occupied by the headers  
+            print("The highest number of rows to enter for is " + str(numRows - 1))
+        else:
+            print("\n")
+            line = ""
+            print(f.readline()) #Display the headers
+            
+            for row in range(n):
+                line += f.readline()
+            print(line)
+            
+csvReader()
