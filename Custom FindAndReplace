@@ -1,0 +1,49 @@
+def findReplaceAll(string, find, replace):
+    #function to find any number of occurence of a partern in a string and replace all of them
+    #string is the string to search
+    #find is the string to search for in the string
+    #replace is the string to replace find
+    
+    string = "Maintain and sustain the rain on the train in vain to retain the pain on the plains of Spain."
+    find = input("Find: ")
+    
+    #check if pattern exists in the string
+    exist = find in string
+    if exist:
+        replace = input("Replace with: ")
+        #make a copy of the string and split using the delimeter of the pattern
+        string2 = string
+        string2 = string2.split(find)
+        #get the last item in string2
+        last = string2[-1]
+        arr = []
+        while exist:
+            #find the index of the pattern in the string
+            pos = string.index(find)
+            #slice the string from start to the index of the partern
+            part = string[ : pos]
+            #concatenate the sliced part to the string to replace the pattern  
+            new = part + replace
+            arr.append(new)
+            #the remaining part of the string
+            string = string[pos + len(find): ]
+            #repeat the process
+            exist = find in string
+        #append the last item of string2 to arr    
+        arr.append(last)
+        #concatenate all the items in the arr array into one string
+        string = "".join(arr)
+        
+#         or
+#         string = ""
+#         for i in arr:
+#             string += i
+
+        print("========")
+        print(string)   
+    else:
+        #if the searched pattern is not found
+        print(find, "does not exist in the string: '" + string + "'.")
+
+string = ""; find = ""; replace = ""
+findReplaceAll(string, find, replace)
