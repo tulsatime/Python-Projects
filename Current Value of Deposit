@@ -1,0 +1,46 @@
+# A program that calculates and displays the current value of a deposit for a given initial deposit,
+# interest rate, number of times interest is calculated per year, and the number of years since the initial deposit.
+# Using the relationship:
+# current value of the deposit: V = P(1 + r/n)^nt
+# Where:
+# • V : Value
+# • P : Initial deposit
+# • r : Interest rate as a fraction (e.g., 0.05)
+# • n : The number of times per year interest is calculated
+# • t : The number of years since the initial deposit
+
+# The program should display each of the values entered in a meaningful way so that the
+# user can easily see what each value represents, along with the results of the calculation.
+# Implement appropriate exception handling for each input where the user might enter a
+# string value that cannot be used as a number. In particular, consider the following:
+# • The user enters a percentage value like “5%” instead of “0.05” for the interest rate.
+# • The user enters “0” for n, resulting in a division by 0 error.
+
+
+P = input("What is the initial deposit? ")
+r = input("Provide the rate in fraction (e.g., 0.05 for 5%): ")
+t = input("How many years since the initial deposit? ")
+n = input("How many times is the interest calculated per year? ")
+
+def display():
+    print("\n===ENTERED VALUED===")
+    print("Initial deposit: N" + str(P))
+    print("Rate:", r)
+    print("Time elapsed:", t)
+    print("Number of times per year that interest is calculated:", n)
+    print("=======RESULT=======")
+    print("Current value of deposit: N" + str(round(V, 2)))
+    
+try:
+    P, r, t, n = int(P), float(r), int(t), int(n)
+    V = P * (1 + (r / n)) ** (n * t)
+    display()
+except ZeroDivisionError as e:
+    print("Oops, cannot divide by zero! Please try again!")
+    print(format(e))
+except ValueError as e:
+    print("Oops, wrong value entered! Please try again!")
+    print(format(e))
+except:
+    print("Oops! An unsuspected error has occured. Please crosscheck your figures and try again!")
+
