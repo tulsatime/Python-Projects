@@ -1,0 +1,25 @@
+# A script that uses the map() function to convert the contents of a text file into uppercase.
+
+def getfile(file):
+    f = open(file, "r")
+    content = f.read()
+    f.close()
+
+    # create a list by splitting the file content using the delimiter of newline("\n")
+    content = content.split("\n")
+
+    # convert each element of the list to uppercase
+    mapper = map(lambda x: x.upper(), content)
+    
+    # convert the map object back to a list
+    mapper = list(mapper)
+    
+    # concatenate(join) the elements of the list into one single element
+    mapper = "\n".join(mapper)
+
+    # Use the converted element to overwrite the file
+    f = open(file, "w")
+    f.write(mapper)
+    f.close()
+    
+getfile(file = "../files/sample.txt")
