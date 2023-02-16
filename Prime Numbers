@@ -1,0 +1,26 @@
+# A script that uses the map() function to determine which integers are prime numbers in an input list of integers.
+
+intList = [4, 6, 7, 2, 5, 9, 13, 15]
+
+# intList = []
+# while True:
+#     n = input("Enter a number. Type done to quit: ")
+#     if n.lower() == "done":
+#         break
+#     else:
+#         n = int(n)
+#         intList.append(n)
+
+print("=======")
+
+def primeFunc(number):
+    if number > 1:
+        for i in range(2, (number // 2) + 1):
+            if number % i == 0:
+                print(number, "is not a prime number")
+                break
+        else:
+            print(number, "is a prime number")
+            
+prime = map(primeFunc, intList)
+print(list(prime))
